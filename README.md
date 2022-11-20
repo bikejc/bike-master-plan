@@ -4,13 +4,15 @@ Experiments in rendering the [the JC Bike Master Plan][JC Bike Master Plan PDF]:
 
 ![](imgs/bmp-053.png)
 
-
 - Individual slide images under [imgs/](imgs)
   - Link to a specific slide like: [github.com/bikejc/bike-master-plan/blob/main/imgs/bmp-053.png](https://github.com/bikejc/bike-master-plan/blob/main/imgs/bmp-053.png)
   - Not a good viewing experience, no browsing supported
 - One big markdown file: [slides.md](slides.md)
   - Link to a specific slide like: [github.com/bikejc/bike-master-plan/blob/main/slides.md#pg-53](https://github.com/bikejc/bike-master-plan/blob/main/slides.md#pg-53)
   - Takes a long time to load page (≈100MB of images 😭)
+- GitHub Pages: [bikejc.github.io/bike-master-plan](https://bikejc.github.io/bike-master-plan/)
+  - [bikejc.github.io/bike-master-plan/slides.md#pg-53](https://bikejc.github.io/bike-master-plan/slides.md#pg-53) should also work
+  - Same issue as above, page loads ≈100MB of images, takes a while, is huge.
  
 Neither of these works very well, will hopefully have something better soon™.
 
