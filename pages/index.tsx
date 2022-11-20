@@ -33,6 +33,7 @@ function smoothScrollTo(id: string) {
         const scrollTop = document.getElementById(id)?.offsetTop
         console.log(`${id}: scroll to:`, scrollTop)
         window.scrollTo({ top: scrollTop, behavior: "smooth" })
+        history.pushState(null,"",`#${id}`);
     }
 }
 
@@ -53,7 +54,7 @@ function Nav({ id, menus, onClick }: { id: string, menus: Menu[], onClick: () =>
                             </div>
                         </div>
                     } else {
-                        return <a key={name} href={`#${id}`} className={"menu"} onClick={smoothScrollTo(id)}>{name}</a>
+                        return <a key={name} href={`#${id}`} className={"menu"} /*onClick={smoothScrollTo(id)}*/>{name}</a>
                     }
                 })
             }

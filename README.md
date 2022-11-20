@@ -1,36 +1,20 @@
 # Jersey City Bike Master Plan
+Rendering the JC Bike Master Plan as a webpage: [bikejc.github.io/bike-master-plan](https://bikejc.github.io/bike-master-plan)
 
-Experiments in rendering the [the JC Bike Master Plan][JC Bike Master Plan PDF] (available from at [JC Dept of Infrastructure](https://www.jerseycitynj.gov/cityhall/infrastructure), under "Plans":
+[The original PDF][JC Bike Master Plan PDF] is available from [the JC Dept of Infrastructure](https://www.jerseycitynj.gov/cityhall/infrastructure) (under "Plans"). It's ≈72MB, and a bit unwieldy to scroll through or deep-link into.
 
-![](public/img/bmp-053.png)
+The web version above supports direct-linking to specific slides, e.g.:
+- Proposed map: [bikejc.github.io/bike-master-plan#53](https://bikejc.github.io/bike-master-plan#53)
+- Ward B detail: [bikejc.github.io/bike-master-plan#ward-b](https://bikejc.github.io/bike-master-plan#ward-b)
 
-- Individual slide images under [imgs/](imgs)
-  - Link to a specific slide like: [github.com/bikejc/bike-master-plan/blob/main/public/img/bmp-053.png](https://github.com/bikejc/bike-master-plan/blob/main/public/img/bmp-053.png)
-  - Not a good viewing experience, no browsing supported
-- One big markdown file: [slides.md](slides.md)
-  - Link to a specific slide like: [github.com/bikejc/bike-master-plan/blob/main/slides.md#pg-53](https://github.com/bikejc/bike-master-plan/blob/main/slides.md#pg-53)
-  - Takes a long time to load page (≈100MB of images 😭)
-- GitHub Pages: [bikejc.github.io/bike-master-plan](https://bikejc.github.io/bike-master-plan/)
-  - [bikejc.github.io/bike-master-plan/slides.md#pg-53](https://bikejc.github.io/bike-master-plan/slides.md#pg-53) should also work
-  - Same issue as above, page loads ≈100MB of images, takes a while, is huge.
- 
-Neither of these works very well, will hopefully have something better soon™.
+It also exposes a menu with direct links to various sections.
+
+![](bmp-map-screenshot.png)
 
 ### Scratch
 Convert [`jc bike master plan.pdf`](jc%20bike%20master%20plan.pdf) to images:
 ```bash
-pdftoppm "jc bike master plan.pdf" "imgs/bmp" -png
-```
-
-Make [`slides.md`](slides.md) (see [`make-slides.sh`](make-slides.sh))
-```bash
-(
-    for i in `seq 1 168`; do
-        d="$(printf "%03d" "$i")"
-        echo -n "<a id=\"pg-${i}\"></a>"
-        echo '![]'"(./public/img/bmp-${d}.png)"
-    done
-) > slides.md
+pdftoppm "jc bike master plan.pdf" "public/img/bmp" -png
 ```
 
 [JC Bike Master Plan PDF]: https://cdn5-hosted.civiclive.com/UserFiles/Servers/Server_6189660/File/Community/Transportation/LetsRideJCMasterPlan-FinalDraft%206.16.19_09_30.pdf
