@@ -1,7 +1,7 @@
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: #333;
-    overflow: hidden;
+    /*overflow: hidden;*/
     position: fixed; /* Make it stick/fixed */
     top: 0; /* Stay on top */
     width: 100%; /* Full width */
@@ -34,7 +34,11 @@
 /* Dropdown container - needed to position the dropdown content */
 .dropdown {
     float: left;
-    overflow: hidden;
+    /*overflow: hidden;*/
+}
+
+.dropdown:hover {
+    background-color: red;
 }
 
 /* Style the dropdown button to fit inside the topnav */
