@@ -2,7 +2,8 @@ import getConfig from 'next/config'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import HomeCss from '../styles/Home.module.css'
+import index from './index.module.css'
 import {MouseEvent, useEffect, useState} from "react";
 
 const navId = "myTopnav"
@@ -18,20 +19,20 @@ function toggleHamburger(open?: boolean) {
     }
 }
 
-type Menu = {
+type Section = {
     name: string
     id: string
-    sections?: {
-        name: string
-        id: string
-    }[]
+    pg?: string
 }
+type Menu = {
+    sections?: Section[]
+} & Section
 
 function smoothScrollTo(id: string) {
     return (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
         const scrollTop = document.getElementById(id)?.offsetTop
-        console.log(`${id}: scroll to:`, scrollTop)
+        //console.log(`${id}: scroll to:`, scrollTop)
         window.scrollTo({ top: scrollTop, behavior: "smooth" })
         history.pushState(null,"",`#${id}`);
     }
@@ -44,7 +45,7 @@ function Nav({ id, menus, onClick }: { id: string, menus: Menu[], onClick: () =>
             {
                 menus.map(({ id, name, sections }) => {
                     if (sections) {
-                        return <div key={name} id={id} className="dropdown menu">
+                        return <div key={name} className="dropdown menu">
                             <button className="dropbtn">Wards
                                 <i className="fa fa-caret-down"></i>
                             </button>
@@ -91,26 +92,36 @@ const Home: NextPage = () => {
         return () => window.removeEventListener('scroll', onScroll);
     }, [ clickScroll, setClickScroll, scrollY, setScrollY ]);
 
+    const wards = [
+        { name: "Ward A", pg: "59", id: "ward-a", },
+        { name: "Ward B", pg: "69", id: "ward-b", },
+        { name: "Ward C", pg: "81", id: "ward-c", },
+        { name: "Ward D", pg: "93", id: "ward-d", },
+        { name: "Ward E", pg: "103", id: "ward-e", },
+        { name: "Ward F", pg: "113", id: "ward-f", },
+    ]
     const menus: Menu[] = [
-        { name: "Vision + Goals", id: "6" },
-        { name: "Public Input, Public Action", id: "26", },
-        { name: "Streets for Cycling", id: "46", },
-        { name: "Map", id: "53", },
-        { name: "Wards", id: "wards", sections: [
-                { name: "Ward A", id: "59" },
-                { name: "Ward B", id: "69" },
-                { name: "Ward C", id: "81" },
-                { name: "Ward D", id: "93" },
-                { name: "Ward E", id: "103" },
-                { name: "Ward F", id: "113" },
-            ],
-        },
-        { name: "Beyond Infrastructure", id: "128", },
-        { name: "Funding + Implementation", id: "158", },
+        { name: "Vision + Goals", id: "vision+goals", pg: "6" },
+        { name: "Public Input, Public Action", id: "public-input", pg: "26", },
+        { name: "Streets for Cycling", id: "streets-for-cycling", pg: "46", },
+        { name: "Map", id: "map", pg: "53", },
+        { name: "Wards", id: "wards", sections: wards, },
+        { name: "Beyond Infrastructure", id: "beyond-infrastructure", pg: "128", },
+        { name: "Funding + Implementation", id: "funding+implementation", pg: "158", },
     ]
 
+    const pgIds: { [k: string]: string[] } = {}
+    menus.concat(wards).forEach(({ id, pg }) => {
+        if (!pg) return
+        if (!(pg in pgIds)) {
+            pgIds[pg] = []
+        }
+        pgIds[pg].push(id)
+    })
+
+    // console.log(pgIds)
     return (
-        <div className={styles.container}>
+        <div className={HomeCss.container}>
             <Head>
                 <title>Jersey City Bike Master Plan</title>
                 <meta name="description" content="Jersey City Bike Master Plan" />
@@ -120,17 +131,21 @@ const Home: NextPage = () => {
 
             {
                 [...Array(168).keys()].map(i => {
-                    const id = (i + 1).toString()
-                    return <a id={id} key={`slide-${id}`} href={`#${id}`} onClick={smoothScrollTo(id)}>
-                        <Image
-                            src={`${basePath}/img/bmp-${id.padStart(3, '0')}.png`}
-                            alt={`Slide ${id}`}
-                            width={600}
-                            height={450}
-                            layout="responsive"
-                            loading="lazy"
-                        />
-                    </a>
+                    const pg = (i + 1).toString()
+                    const extraIds = pgIds[pg] || []
+                    return <span key={`slide-${pg}`} className={index.slide}>
+                        {extraIds.map(id => <a id={id} key={`id-${id}`} />)}
+                        <a id={pg} href={`#${pg}`} onClick={smoothScrollTo(pg)}>
+                            <Image
+                                src={`${basePath}/img/bmp-${pg.padStart(3, '0')}.png`}
+                                alt={`Slide ${pg}`}
+                                width={600}
+                                height={450}
+                                layout="responsive"
+                                loading="lazy"
+                            />
+                        </a>
+                    </span>
                 })
             }
         </div>
