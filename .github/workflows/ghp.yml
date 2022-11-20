@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-          cache-dependency-path: yarn-lock.json
+          cache-dependency-path: yarn.lock
       - run: npm install
       - name: Build
         run: |
