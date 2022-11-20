@@ -1,6 +1,4 @@
 import '../styles/globals.css'
-import '../styles/nav.css'
-import '../styles/topnav.css'
 import type { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {

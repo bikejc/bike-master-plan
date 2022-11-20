@@ -2,7 +2,8 @@ import getConfig from 'next/config'
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import HomeCss from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css'
+import nav from '../components/nav.module.css'
 import index from './index.module.css'
 import {Menu, Nav} from "../components/nav";
 import {smoothScrollTo} from "../components/scroll";
@@ -17,7 +18,7 @@ type Slides = {
     height?: number
 }
 function Slides({ numSlides, src, pgIds, width, height, }: Slides) {
-    return <>{
+    return <div className={index.slides}>{
         [...Array(numSlides).keys()].map(i => {
             const pg = i + 1
             const extraIds = pgIds[pg] || []
@@ -36,7 +37,7 @@ function Slides({ numSlides, src, pgIds, width, height, }: Slides) {
                 </a>
             </div>
         })
-    }</>
+    }</div>
 }
 
 const Home: NextPage = () => {
@@ -45,21 +46,22 @@ const Home: NextPage = () => {
     // console.log("config:", config)
 
     const wards = [
-        { name: "Ward A", pg: "59", id: "ward-a", },
-        { name: "Ward B", pg: "69", id: "ward-b", },
-        { name: "Ward C", pg: "81", id: "ward-c", },
-        { name: "Ward D", pg: "93", id: "ward-d", },
-        { name: "Ward E", pg: "103", id: "ward-e", },
-        { name: "Ward F", pg: "113", id: "ward-f", },
+        { name: "Ward A", pg: 59, id: "ward-a", },
+        { name: "Ward B", pg: 69, id: "ward-b", },
+        { name: "Ward C", pg: 81, id: "ward-c", },
+        { name: "Ward D", pg: 93, id: "ward-d", },
+        { name: "Ward E", pg: 103, id: "ward-e", },
+        { name: "Ward F", pg: 113, id: "ward-f", },
     ]
     const menus: Menu[] = [
-        { name: "Vision + Goals", id: "vision+goals", pg: "6" },
-        { name: "Public Input, Public Action", id: "public-input", pg: "26", },
-        { name: "Streets for Cycling", id: "streets-for-cycling", pg: "46", },
-        { name: "Map", id: "map", pg: "53", },
+        { name: "Top", id: "top", },
+        { name: "Vision", id: "vision+goals", pg: 6 },
+        { name: "Public Input", id: "public-input", pg: 26, },
+        { name: "Streets", id: "streets-for-cycling", pg: 46, },
+        { name: "Map", id: "map", pg: 53, },
         { name: "Wards", id: "wards", sections: wards, },
-        { name: "Beyond Infrastructure", id: "beyond-infrastructure", pg: "128", },
-        { name: "Funding + Implementation", id: "funding+implementation", pg: "158", },
+        { name: "Equity", id: "beyond-infrastructure", pg: 128, },
+        { name: "Implementation", id: "funding+implementation", pg: 158, },
     ]
 
     const pgIds: { [k: string]: string[] } = {}
@@ -73,14 +75,22 @@ const Home: NextPage = () => {
 
     // console.log(pgIds)
     return (
-        <div className={HomeCss.container}>
+        <div id={"top"} className={styles.container}>
             <Head>
                 <title>Jersey City Bike Master Plan</title>
                 <meta name="description" content="Jersey City Bike Master Plan" />
             </Head>
 
-            <Nav id={navId} menus={menus} />
-
+            <Nav id={navId} menus={menus}>
+                <a href={"https://github.com/bikejc/bike-master-plan"} className={nav.menu} target={"_blank"}>
+                    <Image src={`${basePath}/gh-wb.png`} width={48} height={48} className={index["gh-logo"]} />
+                </a>
+            </Nav>
+            <div className={index.intro}>
+                <h1 className={styles.title}>Jersey City Bicycle Master Plan</h1>
+                <p>Adapted from <a href={"https://cdn5-hosted.civiclive.com/UserFiles/Servers/Server_6189660/File/Community/Transportation/LetsRideJCMasterPlan-FinalDraft%206.16.19_09_30.pdf\n"}>the JC Bike Master Plan PDF</a> (available from <a href={"https://www.jerseycitynj.gov/cityhall/infrastructure"}>the JC Dept of Infrastructure's website</a>, under "Plans").</p>
+                <p>That PDF is ≈72MB, and a bit unwieldy to scroll through or deep-link into, so here it is as a series of images. Click each image for a permalink, or use the menu to jump between sections.</p>
+            </div>
             <Slides
                 numSlides={168}
                 src={pg => `${basePath}/img/bmp-${pg.toString().padStart(3, '0')}.png`}

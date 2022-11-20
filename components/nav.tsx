@@ -1,4 +1,5 @@
-import {useEffect, useState} from "react";
+import {ReactNode, useEffect, useState} from "react";
+import css from "./nav.module.css"
 
 export function toggleHamburger(id: string, open?: boolean) {
     const x = document.getElementById(id);
@@ -14,13 +15,13 @@ export function toggleHamburger(id: string, open?: boolean) {
 export type Section = {
     name: string
     id: string
-    pg?: string
+    pg?: number
 }
 export type Menu = {
     sections?: Section[]
 } & Section
 
-export function Nav({ id, menus }: { id: string, menus: Menu[] }) {
+export function Nav({ id, menus, children, }: { id: string, menus: Menu[], children?: ReactNode, }) {
     const [scrollY, setScrollY] = useState(0);
     const [clickScroll, setClickScroll] = useState(false)
 
@@ -28,14 +29,23 @@ export function Nav({ id, menus }: { id: string, menus: Menu[] }) {
         const onScroll = () => {
             const nav = document?.getElementById(id)
             if (!nav) return
+            const height = nav.offsetHeight
             const curScrollY = window.scrollY;
-            // console.log("scroll:", scrollY, "→", curScrollY, "clickScroll:", clickScroll)
-            if (scrollY && !clickScroll && curScrollY > scrollY) {
-                // Scroll down
-                nav.style.top = "-50px";
+            if (scrollY && !clickScroll && curScrollY >= scrollY) {
+                // User scrolled down:
+                if (curScrollY < height) {
+                    // begin edging nav offscreen if still at top of page
+                    nav.classList.add(css.absolute)
+                    nav.style.top = `0`
+                } else {
+                    // hide nav otherwise
+                    nav.style.top = `-${height}px`;
+                }
             } else {
+                nav.classList.remove(css.absolute)
                 nav.style.top = "0";
             }
+            //console.log("scroll:", scrollY, "→", curScrollY, "clickScroll:", clickScroll, "nav.style.top:", nav.style.top)
             setScrollY(curScrollY);
             setClickScroll(false)
         }
@@ -46,25 +56,26 @@ export function Nav({ id, menus }: { id: string, menus: Menu[] }) {
     }, [ clickScroll, setClickScroll, scrollY, setScrollY ]);
 
     return (
-        <div id={id} className={"topnav"} onClick={() => { console.log("click"); setClickScroll(true) }}>
-            <button key={"hamburger"} className="icon" onClick={() => toggleHamburger(id)}>&#9776;</button>
+        <div id={id} className={css.topnav} onClick={() => { setClickScroll(true) }}>
+            <button key={"hamburger"} className={css.icon} onClick={() => toggleHamburger(id)}>&#9776;</button>
             {
                 menus.map(({ id, name, sections }) => {
                     if (sections) {
-                        return <div key={name} className="dropdown menu">
-                            <button className="dropbtn">Wards
+                        return <div key={name} className={`${css.dropdown} ${css.menu}`}>
+                            <button className={css.dropbtn}>Wards
                                 <i className="fa fa-caret-down"></i>
                             </button>
-                            <div className="dropdown-content">{
+                            <div className={css["dropdown-content"]}>{
                                 sections.map(({ id, name }) => <a key={id} href={`#${id}`}>{name}</a>)
                             }
                             </div>
                         </div>
                     } else {
-                        return <a key={name} href={`#${id}`} className={"menu"} /*onClick={smoothScrollTo(id)}*/>{name}</a>
+                        return <a key={name} href={`#${id}`} className={css.menu}>{name}</a>
                     }
                 })
             }
+            {children}
         </div>
     )
 }

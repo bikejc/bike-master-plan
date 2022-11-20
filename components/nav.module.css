@@ -1,12 +1,16 @@
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #333;
+    background-color: black;
     /*overflow: hidden;*/
     position: fixed; /* Make it stick/fixed */
     top: 0; /* Stay on top */
     width: 100%; /* Full width */
     transition: top 0.3s; /* Transition effect when sliding down (and up) */
     z-index: 1;
+}
+
+.topnav.absolute {
+    position: absolute;
 }
 
 /* Style the links inside the navigation bar */
@@ -87,7 +91,7 @@
 }
 
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
     .topnav {
         width: auto;
     }
