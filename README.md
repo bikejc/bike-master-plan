@@ -1,11 +1,11 @@
 # Jersey City Bike Master Plan
 
-Experiments in rendering the [the JC Bike Master Plan][JC Bike Master Plan PDF]:
+Experiments in rendering the [the JC Bike Master Plan][JC Bike Master Plan PDF] (available from at [JC Dept of Infrastructure](https://www.jerseycitynj.gov/cityhall/infrastructure), under "Plans":
 
-![](imgs/bmp-053.png)
+![](public/img/bmp-053.png)
 
 - Individual slide images under [imgs/](imgs)
-  - Link to a specific slide like: [github.com/bikejc/bike-master-plan/blob/main/imgs/bmp-053.png](https://github.com/bikejc/bike-master-plan/blob/main/imgs/bmp-053.png)
+  - Link to a specific slide like: [github.com/bikejc/bike-master-plan/blob/main/public/img/bmp-053.png](https://github.com/bikejc/bike-master-plan/blob/main/public/img/bmp-053.png)
   - Not a good viewing experience, no browsing supported
 - One big markdown file: [slides.md](slides.md)
   - Link to a specific slide like: [github.com/bikejc/bike-master-plan/blob/main/slides.md#pg-53](https://github.com/bikejc/bike-master-plan/blob/main/slides.md#pg-53)
@@ -28,7 +28,7 @@ Make [`slides.md`](slides.md) (see [`make-slides.sh`](make-slides.sh))
     for i in `seq 1 168`; do
         d="$(printf "%03d" "$i")"
         echo -n "<a id=\"pg-${i}\"></a>"
-        echo '![]'"(./imgs/bmp-${d}.png)"
+        echo '![]'"(./public/img/bmp-${d}.png)"
     done
 ) > slides.md
 ```
