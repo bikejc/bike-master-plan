@@ -1,14 +1,20 @@
 /** @type {import('next').NextConfig} */
-module.exports = require('next-optimized-images')({
+
+const basePath = "/bike-master-plan"
+
+module.exports = /*require('next-optimized-images')(*/{
   /* config for next-optimized-images */
 
   reactStrictMode: true,
   swcMinify: true,
-  basePath: "/bike-master-plan",
-  assetPrefix: "/bike-master-plan",
-
-  images: {
-    loader: 'custom',
-    disableStaticImages: true
+  basePath,
+  assetPrefix: basePath,
+  publicRuntimeConfig: {
+    basePath,
   },
-});
+  images: {
+    unoptimized: true,
+    // loader: 'custom',
+    //disableStaticImages: true
+  },
+};
