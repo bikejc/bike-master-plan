@@ -16,24 +16,10 @@ const Home: NextPage = () => {
                 [...Array(168).keys()].map(i => {
                     const id = (i + 1).toString()
                     return <a id={id} key={`slide-${id}`} href={`#${id}`}>
-                        <Image
-                            src={`/img/bmp-${id.padStart(3, '0')}.png`}
-                            alt={`Slide ${id}`}
-                            width={600}
-                            height={450}
-                            layout="responsive"
-                            loading="lazy"
-                        />
+                        <img src={require(`../public/img/bmp-${id.padStart(3, '0')}.png`)} alt={`Slide ${id}`} />
                     </a>
                 })
             }
-            <main className={styles.main}>
-{/*
-                <h1 className={styles.title}>
-                    Jersey City Bike Master Plan
-                </h1>
-*/}
-            </main>
         </div>
     )
 }
