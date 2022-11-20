@@ -82,13 +82,13 @@ const Home: NextPage = () => {
             </Head>
 
             <Nav id={navId} menus={menus}>
-                <a href={"https://github.com/bikejc/bike-master-plan"} className={nav.menu} target={"_blank"}>
-                    <Image src={`${basePath}/gh-wb.png`} width={48} height={48} className={index["gh-logo"]} />
+                <a href={"https://github.com/bikejc/bike-master-plan"} className={nav.menu} style={{ padding: 0 }} target={"_blank"} rel={"noreferrer"}>
+                    <Image alt={"GitHub logo"} src={`${basePath}/gh-wb.png`} width={48} height={48} />
                 </a>
             </Nav>
             <div className={index.intro}>
                 <h1 className={styles.title}>Jersey City Bicycle Master Plan</h1>
-                <p>Adapted from <a href={"https://cdn5-hosted.civiclive.com/UserFiles/Servers/Server_6189660/File/Community/Transportation/LetsRideJCMasterPlan-FinalDraft%206.16.19_09_30.pdf\n"}>the JC Bike Master Plan PDF</a> (available from <a href={"https://www.jerseycitynj.gov/cityhall/infrastructure"}>the JC Dept of Infrastructure's website</a>, under "Plans").</p>
+                <p>Adapted from <a href={"https://cdn5-hosted.civiclive.com/UserFiles/Servers/Server_6189660/File/Community/Transportation/LetsRideJCMasterPlan-FinalDraft%206.16.19_09_30.pdf\n"}>the JC Bike Master Plan PDF</a> (available from <a href={"https://www.jerseycitynj.gov/cityhall/infrastructure"}>the JC Dept of Infrastructure&apos;s website</a>, under &quot;Plans&quot;).</p>
                 <p>That PDF is ≈72MB, and a bit unwieldy to scroll through or deep-link into, so here it is as a series of images. Click each image for a permalink, or use the menu to jump between sections.</p>
             </div>
             <Slides
