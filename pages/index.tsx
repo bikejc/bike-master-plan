@@ -1,12 +1,12 @@
 import getConfig from 'next/config'
 import type {NextPage} from 'next'
-import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import nav from '../components/nav.module.css'
 import index from './index.module.css'
 import {Menu, Nav} from "../components/nav";
 import {smoothScrollTo} from "../components/scroll";
+import {Head} from "next-utils/head"
 
 const navId = "nav"
 
@@ -74,12 +74,15 @@ const Home: NextPage = () => {
     })
 
     // console.log(pgIds)
+    const url = "https://bikejc.github.io/bike-master-plan"
     return (
         <div id={"top"} className={styles.container}>
-            <Head>
-                <title>Jersey City Bike Master Plan</title>
-                <meta name="description" content="Jersey City Bike Master Plan" />
-            </Head>
+            <Head
+                title={"Jersey City Bicycle Master Plan"}
+                description={"The Let’s Ride JC Bicycle Master Plan is intended to help our community build safer streets for everyone."}
+                url={url}
+                thumbnail={`${url}/screenshot.png`}
+            />
 
             <Nav id={navId} menus={menus}>
                 <a href={"https://github.com/bikejc/bike-master-plan"} className={nav.menu} style={{ padding: 0 }} target={"_blank"} rel={"noreferrer"}>
