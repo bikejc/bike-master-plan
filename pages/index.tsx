@@ -2,11 +2,11 @@ import getConfig from 'next/config'
 import type {NextPage} from 'next'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import nav from '../components/nav.module.css'
 import index from './index.module.css'
-import {Menu, Nav} from "../components/nav";
 import {smoothScrollTo} from "../components/scroll";
 import {Head} from "next-utils/head"
+import {Nav} from "next-utils/nav";
+import navCss from "next-utils/nav.css.js";
 
 const navId = "nav"
 
@@ -53,7 +53,7 @@ const Home: NextPage = () => {
         { name: "Ward E", pg: 103, id: "ward-e", },
         { name: "Ward F", pg: 113, id: "ward-f", },
     ]
-    const menus: Menu[] = [
+    const menus = [
         { name: "Top", id: "top", },
         { name: "Vision", id: "vision+goals", pg: 6 },
         { name: "Public Input", id: "public-input", pg: 26, },
@@ -85,7 +85,7 @@ const Home: NextPage = () => {
             />
 
             <Nav id={navId} menus={menus}>
-                <a href={"https://github.com/bikejc/bike-master-plan"} className={nav.menu} style={{ padding: 0 }} target={"_blank"} rel={"noreferrer"}>
+                <a href={"https://github.com/bikejc/bike-master-plan"} className={navCss.menu} style={{ padding: 0 }} target={"_blank"} rel={"noreferrer"}>
                     <Image alt={"GitHub logo"} src={`${basePath}/gh-wb.png`} width={48} height={48} />
                 </a>
             </Nav>

@@ -10,11 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^9.0.0",
     "next": "12.3.3",
-    "next-optimized-images": "^2.6.2",
-    "next-utils": "https://gitpkg.now.sh/runsascoded/next-utils/dist?main",
+    "next-utils": "https://gitpkg.now.sh/runsascoded/next-utils/dist?1c0e488",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -22,8 +19,10 @@
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
+    "@vanilla-extract/next-plugin": "^2.1.1",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.4",
+    "next-transpile-modules": "^10.0.0",
     "typescript": "4.9.3"
   }
 }
