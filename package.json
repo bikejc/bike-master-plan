@@ -1,5 +1,5 @@
 {
-  "name": "bmp2",
+  "name": "bmp",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "next": "12.3.3",
-    "next-utils": "https://gitpkg.now.sh/runsascoded/next-utils/dist?1c0e488",
+    "next-utils": "https://gitpkg.now.sh/runsascoded/next-utils/dist?189b6c4",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },

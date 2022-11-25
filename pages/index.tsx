@@ -3,65 +3,34 @@ import type {NextPage} from 'next'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import index from './index.module.css'
-import {smoothScrollTo} from "../components/scroll";
 import {Head} from "next-utils/head"
 import {Nav} from "next-utils/nav";
 import navCss from "next-utils/nav.css.js";
-
-const navId = "nav"
-
-type Slides = {
-    numSlides: number
-    src: (pg: number) => string
-    pgIds: { [k: number]: string[] }
-    width?: number
-    height?: number
-}
-function Slides({ numSlides, src, pgIds, width, height, }: Slides) {
-    return <div className={index.slides}>{
-        [...Array(numSlides).keys()].map(i => {
-            const pg = i + 1
-            const extraIds = pgIds[pg] || []
-            const id = pg.toString()
-            return <div key={`slide-${pg}`} className={index.slide}>
-                {extraIds.map(id => <a id={id} key={`id-${id}`} />)}
-                <a id={id} href={`#${pg}`} onClick={smoothScrollTo(id)}>
-                    <Image
-                        src={src(pg)}
-                        alt={`Slide ${pg}`}
-                        width={width}
-                        height={height}
-                        layout="responsive"
-                        loading="lazy"
-                    />
-                </a>
-            </div>
-        })
-    }</div>
-}
+import {Slides} from "../components/slides";
 
 const Home: NextPage = () => {
     const { publicRuntimeConfig: config } = getConfig()
     const { basePath = "" } = config
     // console.log("config:", config)
+    console.log("navCss:", navCss)
 
     const wards = [
-        { name: "Ward A", pg: 59, id: "ward-a", },
-        { name: "Ward B", pg: 69, id: "ward-b", },
-        { name: "Ward C", pg: 81, id: "ward-c", },
-        { name: "Ward D", pg: 93, id: "ward-d", },
-        { name: "Ward E", pg: 103, id: "ward-e", },
-        { name: "Ward F", pg: 113, id: "ward-f", },
+        { pg:  59, name:         "Ward A", id:                "ward-a",                   },
+        { pg:  69, name:         "Ward B", id:                "ward-b",                   },
+        { pg:  81, name:         "Ward C", id:                "ward-c",                   },
+        { pg:  93, name:         "Ward D", id:                "ward-d",                   },
+        { pg: 103, name:         "Ward E", id:                "ward-e",                   },
+        { pg: 113, name:         "Ward F", id:                "ward-f",                   },
     ]
     const menus = [
-        { name: "Top", id: "top", },
-        { name: "Vision", id: "vision+goals", pg: 6 },
-        { name: "Public Input", id: "public-input", pg: 26, },
-        { name: "Streets", id: "streets-for-cycling", pg: 46, },
-        { name: "Map", id: "map", pg: 53, },
-        { name: "Wards", id: "wards", sections: wards, },
-        { name: "Equity", id: "beyond-infrastructure", pg: 128, },
-        { name: "Implementation", id: "funding+implementation", pg: 158, },
+        {          name:            "Top", id:                    "top",                  },
+        { pg:   6, name:         "Vision", id:           "vision+goals",                  },
+        { pg:  26, name:   "Public Input", id:           "public-input",                  },
+        { pg:  46, name:        "Streets", id:    "streets-for-cycling",                  },
+        { pg:  53, name:            "Map", id:                    "map",                  },
+        {          name:          "Wards", id:                  "wards", sections: wards, },
+        { pg: 128, name:         "Equity", id:  "beyond-infrastructure",                  },
+        { pg: 158, name: "Implementation", id: "funding+implementation",                  },
     ]
 
     const pgIds: { [k: string]: string[] } = {}
@@ -84,8 +53,8 @@ const Home: NextPage = () => {
                 thumbnail={`${url}/screenshot.png`}
             />
 
-            <Nav id={navId} menus={menus}>
-                <a href={"https://github.com/bikejc/bike-master-plan"} className={navCss.menu} style={{ padding: 0 }} target={"_blank"} rel={"noreferrer"}>
+            <Nav id={"nav"} menus={menus}>
+                <a href={"https://github.com/bikejc/bike-master-plan"} className={`${navCss.menu} ${navCss.logo}`} target={"_blank"} rel={"noreferrer"}>
                     <Image alt={"GitHub logo"} src={`${basePath}/gh-wb.png`} width={48} height={48} />
                 </a>
             </Nav>

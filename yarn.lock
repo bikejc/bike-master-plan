@@ -2002,11 +2002,12 @@
   dependencies:
     "enhanced-resolve" "^5.10.0"
 
-"next-utils@https://gitpkg.now.sh/runsascoded/next-utils/dist?1c0e488":
-  "integrity" "sha512-110EXO6MPpUToV5kExGCDGrIzR+MkZdaluAFHgDqXvTgIOfpFWlZXPNrT33P9PJd8/dpY3gnzWLZYyKhxhuriA=="
-  "resolved" "https://gitpkg.now.sh/runsascoded/next-utils/dist?1c0e488"
+"next-utils@https://gitpkg.now.sh/runsascoded/next-utils/dist?189b6c4":
+  "integrity" "sha512-bfoeATwHWIz6sL0fs+y4s7n+blCK5NzgLQ/5r8iV3SEtTMYtYZzp+r86Gvs/ivpUOZvG2S3DV3v6byFKWvUOjg=="
+  "resolved" "https://gitpkg.now.sh/runsascoded/next-utils/dist?189b6c4"
   "version" "0.1.0"
   dependencies:
+    "@vanilla-extract/css" "^1.9.2"
     "next" "12.3.3"
     "react" "18.2.0"
     "react-dom" "18.2.0"
