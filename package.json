@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "next": "12.3.3",
-    "next-utils": "https://gitpkg.now.sh/runsascoded/next-utils/dist?189b6c4",
+    "next-utils": "https://gitpkg.now.sh/runsascoded/next-utils/dist?bc71750",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
