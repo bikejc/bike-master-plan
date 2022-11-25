@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export",
+    "export": "next build && next export -o out/bike-master-plan",
+    "gha-export": "next export && touch out/.nojekyll",
     "lint": "next lint"
   },
   "dependencies": {

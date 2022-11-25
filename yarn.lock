@@ -2002,9 +2002,9 @@
   dependencies:
     "enhanced-resolve" "^5.10.0"
 
-"next-utils@https://gitpkg.now.sh/runsascoded/next-utils/dist?189b6c4":
-  "integrity" "sha512-bfoeATwHWIz6sL0fs+y4s7n+blCK5NzgLQ/5r8iV3SEtTMYtYZzp+r86Gvs/ivpUOZvG2S3DV3v6byFKWvUOjg=="
-  "resolved" "https://gitpkg.now.sh/runsascoded/next-utils/dist?189b6c4"
+"next-utils@https://gitpkg.now.sh/runsascoded/next-utils/dist?bc71750":
+  "integrity" "sha512-JwBLmGWcPApY+HxdXOsUsLtwvI31q4FswD+SWzIIz9NV6trODTiG5ZRHoJm2ExuMDFeROS6jQVVdw6ZmLudZGg=="
+  "resolved" "https://gitpkg.now.sh/runsascoded/next-utils/dist?bc71750"
   "version" "0.1.0"
   dependencies:
     "@vanilla-extract/css" "^1.9.2"

@@ -17,11 +17,8 @@ jobs:
           cache: 'npm'
           cache-dependency-path: yarn.lock
       - run: npm install
-      - name: Build
-        run: |
-          npm run build
-          npm run export
-          touch out/.nojekyll
+      - run: npm run build
+      - run: npm run gha-export
       - name: Deploy to GH Page
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
